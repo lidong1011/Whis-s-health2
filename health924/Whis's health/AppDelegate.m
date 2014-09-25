@@ -54,21 +54,22 @@
 
 - (TabBar *)makeTabBar
 {
-    NSArray *imageArray=@[@"TabBarRecommendIcon.png",
+    NSArray *imageArray=@[@"健康小常识.png",
                           @"TabBarRecommendIcon.png",
-                          @"TabBarRecommendIcon.png",
-                          @"TabBarRecommendIcon.png"];
+                          @"hospital2.png",
+                          @"咨讯.png"];
     NSMutableArray *itemsArray=[[NSMutableArray alloc]init];
     for (int i=0; i<4; i++)
     {
         UIImage *image=[UIImage imageNamed:imageArray[i]];
         Items *item=[[Items alloc]initWithImage:image title:nil];
-        item.selectImage=[UIImage imageNamed:@"TabBarHomeBackgroundSelected.png"];
+//        item.selectImage=[UIImage imageNamed:@"TabBarHomeBackgroundSelected.png"];
+        item.selectImage=[UIImage imageNamed:@"粉红.png"];
         [itemsArray addObject:item];
     }
     TabBar *tabBar=[[TabBar alloc]initWithFrame:tabBarCtr.tabBar.bounds];
     tabBar.itemArray=itemsArray;
-    tabBar.bgImage=[UIImage imageNamed:@"RecommandationViewTitleBackground"];
+    tabBar.bgImage=[UIImage imageNamed:@"黄色.png"];
     tabBar.selectIndex=0;
     tabBar.delegate=self;
     return tabBar;
