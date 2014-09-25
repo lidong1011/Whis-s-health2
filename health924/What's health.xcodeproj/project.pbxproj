@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1802616D19D3EF5700D67641 /* LunBoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802616C19D3EF5700D67641 /* LunBoItem.m */; };
 		1809424719D19DDE00C70DC5 /* HealthNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809423D19D19DDE00C70DC5 /* HealthNews.m */; };
 		1809424919D19DDE00C70DC5 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809424119D19DDE00C70DC5 /* NewsTableViewCell.m */; };
 		1809424B19D19DDE00C70DC5 /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809424619D19DDE00C70DC5 /* ViewPagerController.m */; };
@@ -94,8 +95,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1809423C19D19DDE00C70DC5 /* HealthNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthNews.h; sourceTree = "<group>"; };
-		1809423D19D19DDE00C70DC5 /* HealthNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthNews.m; sourceTree = "<group>"; };
+		1802616B19D3EF5700D67641 /* LunBoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LunBoItem.h; sourceTree = "<group>"; };
+		1802616C19D3EF5700D67641 /* LunBoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LunBoItem.m; sourceTree = "<group>"; };
+		1809423C19D19DDE00C70DC5 /* HealthNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HealthNews.h; path = ../HealthVCtr/Controller/HealthNews.h; sourceTree = "<group>"; };
+		1809423D19D19DDE00C70DC5 /* HealthNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HealthNews.m; path = ../HealthVCtr/Controller/HealthNews.m; sourceTree = "<group>"; };
 		1809424019D19DDE00C70DC5 /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTableViewCell.h; sourceTree = "<group>"; };
 		1809424119D19DDE00C70DC5 /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewCell.m; sourceTree = "<group>"; };
 		1809424519D19DDE00C70DC5 /* ViewPagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPagerController.h; sourceTree = "<group>"; };
@@ -265,6 +268,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1802616E19D4029C00D67641 /* zhuViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1830CCCA19CC0C1000A30CDA /* HomeViewController.h */,
+				1830CCCB19CC0C1000A30CDA /* HomeViewController.m */,
+				1830CC9E19CBB89F00A30CDA /* CaiCaiViewController.h */,
+				1830CC9F19CBB89F00A30CDA /* CaiCaiViewController.m */,
+				1809423C19D19DDE00C70DC5 /* HealthNews.h */,
+				1809423D19D19DDE00C70DC5 /* HealthNews.m */,
+				1830CCC619CBC41900A30CDA /* DetailViewController.h */,
+				1830CCC719CBC41900A30CDA /* DetailViewController.m */,
+			);
+			name = zhuViewController;
+			sourceTree = "<group>";
+		};
 		1809423A19D19DDE00C70DC5 /* HealthVCtr */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,8 +296,6 @@
 		1809423B19D19DDE00C70DC5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1809423C19D19DDE00C70DC5 /* HealthNews.h */,
-				1809423D19D19DDE00C70DC5 /* HealthNews.m */,
 				1809424C19D1A70B00C70DC5 /* HealthViewController.h */,
 				1809424D19D1A70B00C70DC5 /* HealthViewController.m */,
 				1809424019D19DDE00C70DC5 /* NewsTableViewCell.h */,
@@ -499,16 +515,11 @@
 		1830CC6419CBB46700A30CDA /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1802616E19D4029C00D67641 /* zhuViewController */,
 				1830CCC919CC0C1000A30CDA /* HomeViewController */,
 				1830CC9D19CBB89F00A30CDA /* CaiCaiViewCtr */,
 				18F2025119D059C2001452E3 /* hospital */,
 				184C656519D30B4900CB994C /* NewletterViewController */,
-				1830CCCA19CC0C1000A30CDA /* HomeViewController.h */,
-				1830CCCB19CC0C1000A30CDA /* HomeViewController.m */,
-				1830CC9E19CBB89F00A30CDA /* CaiCaiViewController.h */,
-				1830CC9F19CBB89F00A30CDA /* CaiCaiViewController.m */,
-				1830CCC619CBC41900A30CDA /* DetailViewController.h */,
-				1830CCC719CBC41900A30CDA /* DetailViewController.m */,
 			);
 			name = ViewController;
 			path = "Whis's health/ViewController";
@@ -597,6 +608,8 @@
 				184C656819D30B8700CB994C /* NewsletterDataManager.m */,
 				184C656919D30B8700CB994C /* NewsletterNetworkManager.h */,
 				184C656A19D30B8700CB994C /* NewsletterNetworkManager.m */,
+				1802616B19D3EF5700D67641 /* LunBoItem.h */,
+				1802616C19D3EF5700D67641 /* LunBoItem.m */,
 				184C656B19D30B8700CB994C /* SportItem.h */,
 				184C656C19D30B8700CB994C /* SportItem.m */,
 			);
@@ -756,6 +769,7 @@
 				1830CC8D19CBB46700A30CDA /* UIImage+MultiFormat.m in Sources */,
 				18F2025D19D059C2001452E3 /* ViewController.m in Sources */,
 				1830CC8019CBB46700A30CDA /* HTMLNode.m in Sources */,
+				1802616D19D3EF5700D67641 /* LunBoItem.m in Sources */,
 				1830CC8519CBB46700A30CDA /* SDWebImageCompat.m in Sources */,
 				1830CC7A19CBB46700A30CDA /* AFURLSessionManager.m in Sources */,
 				1830CCD519CC0C1000A30CDA /* MyTableViewCell.m in Sources */,

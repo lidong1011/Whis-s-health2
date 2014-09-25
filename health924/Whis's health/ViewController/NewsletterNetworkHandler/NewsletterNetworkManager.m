@@ -28,6 +28,20 @@
     return shareInstance;
 }
 
+- (void)getLunBodataWithString:(NSString *)string
+{
+    NSURL *url = [NSURL URLWithString:string];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFHTTPRequestOperation *httpRequest = [[AFHTTPRequestOperation alloc]initWithRequest:request];
+    [httpRequest setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"%@",responseObject);
+        [[NSNotificationCenter defaultCenter] postNotificationName:kGetLunBoData object:nil userInfo:@{@"data":responseObject}];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    [httpRequest start];
+}
+
 - (void)getNewsletter {
     _newsletterUrl = [NSMutableString stringWithString:@"http://phone.manle.com/yaodian.php?mod=info_channel_info_list&channel_id=28&relevance=0&start=0&rows=&os=android&ver=4.2.3"];    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

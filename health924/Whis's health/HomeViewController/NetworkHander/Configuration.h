@@ -24,5 +24,8 @@
 /*
  健康时讯
  */
+//列表
 #define kGetNewsletter @"getNewsletter"
 #define kRefreshNewsletterData @"refreshNewsletterData"
+//轮播
+#define kGetLunBoData @"getLunBoData"

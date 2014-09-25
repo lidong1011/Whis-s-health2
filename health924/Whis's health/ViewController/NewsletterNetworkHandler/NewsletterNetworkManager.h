@@ -12,7 +12,7 @@
 
 + (NewsletterNetworkManager *)shareManager;
 
-
+- (void)getLunBodataWithString:(NSString *)string;
 - (void)getNewsletter;
 
 @end
