@@ -11,6 +11,8 @@
 #import "MyScrollView.h"
 #import "NewsletterDataManager.h"
 #import "SportItem.h"
+#import "LunBoItem.h"
+
 #import "Configuration.h"
 
 #import "UIImageView+WebCache.h"
@@ -21,6 +23,7 @@
     MyScrollView *_myScrollView;
     UIPageControl *_pageCtr;
     NSMutableArray *_dataArray;
+    NSMutableArray *_lunBoArray;
 }
 @end
 
@@ -28,19 +31,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _string = @"http://phone.manle.com/yaodian.php?mod=info_ttlunbotu&lat=28.171589&lng=112.959495&city=%E9%95%BF%E6%B2%99%E5%B8%82&hwid=1b9dbcc6f429f5eb99efb28de5d07c12&channel=91%E5%8A%A9%E6%89%8B&os=android&ver=4.2.3";
     [self createTableView];
-    [self getData];
+    [self getLunBoDataWithString:_string];
+//    [self getData];
+}
+
+- (void)getLunBoDataWithString:(NSString *)string
+{
+    [[NewsletterDataManager shareManager] newsletterData];
+    [[NewsletterDataManager shareManager] lunBoDataWithString:_string];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRefresh:) name:kRefreshNewsletterData object:nil];
 }
 
 - (void)getData {
+    
     [[NewsletterDataManager shareManager] newsletterData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRefresh:) name:kRefreshNewsletterData object:nil];
 }
 
 - (void)didRefresh:(NSNotification *)notification {
     _dataArray = [[NewsletterDataManager shareManager] newsletterData];
+    _lunBoArray = [[NewsletterDataManager shareManager] lunBoDataWithString:_string];
     NSLog(@"%@", _dataArray);
+    [_myScrollView reloadData];
     [_tableView reloadData];
 }
 
@@ -75,17 +89,19 @@
 #pragma mark-myscrollDelegate
 - (NSInteger)numberOfPageInScrollView:(MyScrollView *)scrollView
 {
-    return 3;
+    return _lunBoArray.count;
 }
 
 - (UIView *)scrollView:(MyScrollView *)scrollView viewAtIndex:(NSInteger)index
 {
-    UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"2.jpg"]];
+    LunBoItem *item = (LunBoItem *)_lunBoArray[index];
+    UIImageView *imgView = [[UIImageView alloc]init];
+    [imgView sd_setImageWithURL:[NSURL URLWithString:item.img]];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 140 - 45, self.view.frame.size.width, 40)];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor whiteColor];
     label.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    label.text = @"横条新闻";
+    label.text = item.title;
     [imgView addSubview:label];
     return imgView;
 }
@@ -99,7 +115,6 @@
 {
     _pageCtr.currentPage = scrollView.currentPage;
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

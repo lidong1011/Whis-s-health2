@@ -10,9 +10,11 @@
 #import "Configuration.h"
 #import "NewsletterNetworkManager.h"
 #import "SportItem.h"
+#import "LunBoItem.h"
 
 @interface NewsletterDataManager () {
     NSMutableArray *_newsletterData;
+    NSMutableArray *_lunBoMArray;
 }
 
 @end
@@ -31,8 +33,30 @@
 - (instancetype)init {
     if (self = [super init]) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didNewsletter:) name:kGetNewsletter object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLunBo:) name:kGetLunBoData object:nil];
     }
     return self;
+}
+
+- (void)didLunBo:(NSNotification *)notification
+{
+    NSDictionary *dic = notification.userInfo;
+    NSString *html = [[NSString alloc] initWithData:[dic valueForKey:@"data"] encoding:NSUTF8StringEncoding];
+//    NSLog(@"%@",html);
+//    NSData *data = [dataString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error = nil;
+    NSDictionary *dataDic = [NSJSONSerialization JSONObjectWithData:[dic objectForKey:@"data"] options:NSJSONReadingAllowFragments error:&error];
+//    NSLog(@"%@",dataDic);
+   
+    NSMutableArray *lunBoMArray = [NSMutableArray array];
+    for (NSDictionary *d in dataDic[@"data"][@"channel_info_img"])
+    {
+        NSLog(@"%@",d);
+        LunBoItem *lunBo = [LunBoItem lunBoItem:d];
+        [lunBoMArray addObject:lunBo];
+    }
+    _lunBoMArray = lunBoMArray;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshNewsletterData object:nil];
 }
 
 - (void)didNewsletter:(NSNotification *)notification {
@@ -58,8 +82,19 @@
     _newsletterData = nil;
 }
 
-- (NSArray *)newsletterData {
-    if (_newsletterData == nil) {
+- (NSArray *)lunBoDataWithString:(NSString *)string
+{
+    if (_lunBoMArray == nil)
+    {
+        [[NewsletterNetworkManager shareManager] getLunBodataWithString:string];
+    }
+    return _lunBoMArray;
+}
+
+- (NSArray *)newsletterData
+{
+    if (_newsletterData == nil)
+    {
         [[NewsletterNetworkManager shareManager] getNewsletter];
     }
     return _newsletterData;
