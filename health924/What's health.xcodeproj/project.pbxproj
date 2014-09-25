@@ -93,6 +93,8 @@
 		18A5786619D4042800A2684C /* hospital2.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A5786519D4042800A2684C /* hospital2.png */; };
 		18A5786819D4057B00A2684C /* 黄色.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A5786719D4057B00A2684C /* 黄色.png */; };
 		18A5786C19D4071800A2684C /* 资讯.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A5786B19D4071800A2684C /* 资讯.png */; };
+		18A5786E19D45B5C00A2684C /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A5786D19D45B5C00A2684C /* apple.png */; };
+		18A5787019D45CD300A2684C /* 小常识.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A5786F19D45CD300A2684C /* 小常识.png */; };
 		18F2025A19D059C2001452E3 /* HospitalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F2025319D059C2001452E3 /* HospitalViewController.m */; };
 		18F2025B19D059C2001452E3 /* MicroHospitalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F2025519D059C2001452E3 /* MicroHospitalCell.m */; };
 		18F2025C19D059C2001452E3 /* MicroHospitalHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F2025719D059C2001452E3 /* MicroHospitalHandler.m */; };
@@ -255,6 +257,8 @@
 		18A5786519D4042800A2684C /* hospital2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hospital2.png; sourceTree = "<group>"; };
 		18A5786719D4057B00A2684C /* 黄色.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "黄色.png"; sourceTree = "<group>"; };
 		18A5786B19D4071800A2684C /* 资讯.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "资讯.png"; sourceTree = "<group>"; };
+		18A5786D19D45B5C00A2684C /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple.png; sourceTree = "<group>"; };
+		18A5786F19D45CD300A2684C /* 小常识.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "小常识.png"; sourceTree = "<group>"; };
 		18F2025219D059C2001452E3 /* HospitalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HospitalViewController.h; sourceTree = "<group>"; };
 		18F2025319D059C2001452E3 /* HospitalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HospitalViewController.m; sourceTree = "<group>"; };
 		18F2025419D059C2001452E3 /* MicroHospitalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MicroHospitalCell.h; sourceTree = "<group>"; };
@@ -412,6 +416,8 @@
 				18A5786319D4024200A2684C /* hospital.png */,
 				18A5786519D4042800A2684C /* hospital2.png */,
 				18A5786B19D4071800A2684C /* 资讯.png */,
+				18A5786D19D45B5C00A2684C /* apple.png */,
+				18A5786F19D45CD300A2684C /* 小常识.png */,
 			);
 			name = image;
 			path = "Whis's health/image";
@@ -709,6 +715,7 @@
 				1830CC6F19CBB46700A30CDA /* TabBarHomeBackground@2x.png in Resources */,
 				1830CC6A19CBB46700A30CDA /* foregroundStar.png in Resources */,
 				18A5786C19D4071800A2684C /* 资讯.png in Resources */,
+				18A5787019D45CD300A2684C /* 小常识.png in Resources */,
 				184C654D19D2FDC200CB994C /* 粉红.png in Resources */,
 				1830CC7019CBB46700A30CDA /* TabBarHomeBackgroundSelected@2x.png in Resources */,
 				1830CBEE19CBB20A00A30CDA /* LaunchScreen.xib in Resources */,
@@ -726,6 +733,7 @@
 				1830CC6819CBB46700A30CDA /* backgroundStar.png in Resources */,
 				1830CC6B19CBB46700A30CDA /* foregroundStar@2x.png in Resources */,
 				18A5786419D4024200A2684C /* hospital.png in Resources */,
+				18A5786E19D45B5C00A2684C /* apple.png in Resources */,
 				18A5786619D4042800A2684C /* hospital2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
