@@ -10,8 +10,10 @@
 #import "AFNetworking.h"
 #import "Configuration.h"
 
-@interface NewsletterNetworkManager () {
+@interface NewsletterNetworkManager ()
+{
     NSMutableString *_newsletterUrl;
+    NSArray *_listArray;
 }
 
 @end
@@ -24,7 +26,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shareInstance = [[NewsletterNetworkManager alloc] init];
+
     });
+    
     return shareInstance;
 }
 
@@ -42,12 +46,26 @@
     [httpRequest start];
 }
 
-- (void)getNewsletter {
+- (void)getNewsletter
+{
     _newsletterUrl = [NSMutableString stringWithString:@"http://phone.manle.com/yaodian.php?mod=info_channel_info_list&channel_id=28&relevance=0&start=0&rows=&os=android&ver=4.2.3"];    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager GET:_newsletterUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [[NSNotificationCenter defaultCenter] postNotificationName:kGetNewsletter object:nil userInfo:@{@"data":responseObject}];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Newsletter Error: %@", error);
+    }];
+}
+
+- (void)getNewsletter:(NSString *)string
+{
+//    _newsletterUrl = [NSMutableString stringWithString:@"http://phone.manle.com/yaodian.php?mod=info_channel_info_list&channel_id=28&relevance=0&start=0&rows=&os=android&ver=4.2.3"];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:string parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kGetNewsletter object:nil userInfo:@{@"data":responseObject}];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Newsletter Error: %@", error);

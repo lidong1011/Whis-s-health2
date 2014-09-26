@@ -54,6 +54,8 @@
 - (UIViewController *)viewPager:(ViewPagerController *)viewPager contentViewControllerForTabAtIndex:(NSUInteger)index {
     
     HealthViewController *cvc = [[HealthViewController alloc]init];
+    cvc.index = index;
+    NSLog(@"%d",index);
     cvc.view.backgroundColor = [UIColor whiteColor];
     return cvc;
 }

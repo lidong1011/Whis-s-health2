@@ -12,13 +12,18 @@
 #import "SportItem.h"
 #import "LunBoItem.h"
 
-@interface NewsletterDataManager () {
+@interface NewsletterDataManager ()
+{
     NSMutableArray *_newsletterData;
     NSMutableArray *_lunBoMArray;
+    NSMutableArray *_lunBoMArray2;
+    NSMutableArray *_lunBoMArray3;
+    NSMutableArray *_lunBoMArray4;
+    NSInteger _index;
 }
 
 @end
-
+//static int flog =0;
 @implementation NewsletterDataManager
 
 + (instancetype)shareManager {
@@ -27,6 +32,7 @@
     dispatch_once(&onceToken, ^{
         shareInstance = [[NewsletterDataManager alloc] init];
     });
+    
     return shareInstance;
 }
 
@@ -41,13 +47,13 @@
 - (void)didLunBo:(NSNotification *)notification
 {
     NSDictionary *dic = notification.userInfo;
-    NSString *html = [[NSString alloc] initWithData:[dic valueForKey:@"data"] encoding:NSUTF8StringEncoding];
+//    NSString *html = [[NSString alloc] initWithData:[dic valueForKey:@"data"] encoding:NSUTF8StringEncoding];
 //    NSLog(@"%@",html);
 //    NSData *data = [dataString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error = nil;
     NSDictionary *dataDic = [NSJSONSerialization JSONObjectWithData:[dic objectForKey:@"data"] options:NSJSONReadingAllowFragments error:&error];
-//    NSLog(@"%@",dataDic);
-   
+    NSLog(@"%@",dataDic);
+
     NSMutableArray *lunBoMArray = [NSMutableArray array];
     for (NSDictionary *d in dataDic[@"data"][@"channel_info_img"])
     {
@@ -55,8 +61,42 @@
         LunBoItem *lunBo = [LunBoItem lunBoItem:d];
         [lunBoMArray addObject:lunBo];
     }
-    _lunBoMArray = lunBoMArray;
-    [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshNewsletterData object:nil];
+    switch (_index)
+    {
+        case 0:
+            _lunBoMArray = lunBoMArray;
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshNewsletterData object:nil];
+            _lunBoMArray = nil;
+            break;
+        case 1:
+            _lunBoMArray2 = lunBoMArray;
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshNewsletterData object:nil];
+            _lunBoMArray2 = nil;
+            break;
+        case 2:
+            _lunBoMArray3 = lunBoMArray;
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshNewsletterData object:nil];
+            _lunBoMArray3 = nil;
+            break;
+        case 3:
+            _lunBoMArray3 = lunBoMArray;
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshNewsletterData object:nil];
+            _lunBoMArray3 = nil;
+            break;
+        default:
+            break;
+    }
+//    if (_index == 0) {
+//        _lunBoMArray = lunBoMArray;
+//        [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshNewsletterData object:nil];
+//        _lunBoMArray = nil;
+//    }
+//    else
+//    {
+//        _lunBoMArray2 = lunBoMArray;
+//        [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshNewsletterData object:nil];
+//        _lunBoMArray2 = nil;
+//    }
 }
 
 - (void)didNewsletter:(NSNotification *)notification {
@@ -82,13 +122,62 @@
     _newsletterData = nil;
 }
 
-- (NSArray *)lunBoDataWithString:(NSString *)string
+- (NSArray *)lunBoDataWithString:(NSString *)string index:(NSInteger)index
 {
-    if (_lunBoMArray == nil)
+    _index = index;
+    switch (_index)
     {
-        [[NewsletterNetworkManager shareManager] getLunBodataWithString:string];
+        case 0:
+            if (_lunBoMArray == nil)
+            {
+                [[NewsletterNetworkManager shareManager] getLunBodataWithString:string];
+            }
+            return _lunBoMArray;
+            break;
+        case 1:
+            if (_lunBoMArray2 == nil)
+            {
+                [[NewsletterNetworkManager shareManager] getLunBodataWithString:string];
+            }
+            return _lunBoMArray2;
+            break;
+        case 2:
+            if (_lunBoMArray3 == nil)
+            {
+                [[NewsletterNetworkManager shareManager] getLunBodataWithString:string];
+            }
+            return _lunBoMArray3;
+            break;
+        case 3:
+            if (_lunBoMArray4 == nil)
+            {
+                [[NewsletterNetworkManager shareManager] getLunBodataWithString:string];
+            }
+            return _lunBoMArray4;
+            break;
+  
+        default:
+            return _lunBoMArray;
+            break;
     }
-    return _lunBoMArray;
+//    if (_index ==0)
+//    {
+//        if (_lunBoMArray == nil)
+//        {
+//            [[NewsletterNetworkManager shareManager] getLunBodataWithString:string];
+//        }
+//        //    [[NewsletterNetworkManager shareManager] getLunBodataWithString:string];
+//        return _lunBoMArray;
+//    }
+//    else
+//    {
+//    if (_lunBoMArray2 == nil)
+//    {
+//        [[NewsletterNetworkManager shareManager] getLunBodataWithString:string];
+//    }
+////    [[NewsletterNetworkManager shareManager] getLunBodataWithString:string];
+//    return _lunBoMArray2;
+//    }
 }
 
 - (NSArray *)newsletterData
@@ -99,5 +188,15 @@
     }
     return _newsletterData;
 }
+
+- (NSArray *)newsletterData:(NSString *)string index:(NSInteger)index
+{
+    if (_newsletterData == nil)
+    {
+        [[NewsletterNetworkManager shareManager] getNewsletter:string];
+    }
+    return _newsletterData;
+}
+
 
 @end

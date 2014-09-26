@@ -14,5 +14,5 @@
 
 - (void)getLunBodataWithString:(NSString *)string;
 - (void)getNewsletter;
-
+- (void)getNewsletter:(NSString *)string;
 @end

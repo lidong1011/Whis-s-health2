@@ -22,8 +22,10 @@
     UITableView *_tableView;
     MyScrollView *_myScrollView;
     UIPageControl *_pageCtr;
+    NSString *_string;
     NSMutableArray *_dataArray;
     NSMutableArray *_lunBoArray;
+    NSArray *_listArray;
 }
 @end
 
@@ -31,17 +33,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _string = @"http://phone.manle.com/yaodian.php?mod=info_ttlunbotu&lat=28.171589&lng=112.959495&city=%E9%95%BF%E6%B2%99%E5%B8%82&hwid=1b9dbcc6f429f5eb99efb28de5d07c12&channel=91%E5%8A%A9%E6%89%8B&os=android&ver=4.2.3";
+    
+    _listArray = [NSArray arrayWithObjects:@8,@28,@8,@28,@32, nil];
+    _string = [NSString stringWithFormat:@"http://phone.manle.com/yaodian.php?mod=info_channel_info_list&channel_id=%d&relevance=0&start=0&rows=&os=android&ver=4.2.3",[_listArray[_index] integerValue]];
+//    _string = @"http://phone.manle.com/healthnews.php?mod=channel_lunbo&channel_id=8&os=android&ver=4.2.3";
     [self createTableView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRefresh:) name:kRefreshNewsletterData object:nil];
+
     [self getLunBoDataWithString:_string];
 //    [self getData];
 }
 
 - (void)getLunBoDataWithString:(NSString *)string
 {
-    [[NewsletterDataManager shareManager] newsletterData];
-    [[NewsletterDataManager shareManager] lunBoDataWithString:_string];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRefresh:) name:kRefreshNewsletterData object:nil];
+    [[NewsletterDataManager shareManager] newsletterData:_string index:_index];
+//    [[NewsletterDataManager shareManager] lunBoDataWithString:_string index:_index];
 }
 
 - (void)getData {
@@ -51,8 +57,8 @@
 }
 
 - (void)didRefresh:(NSNotification *)notification {
-    _dataArray = [[NewsletterDataManager shareManager] newsletterData];
-    _lunBoArray = [[NewsletterDataManager shareManager] lunBoDataWithString:_string];
+    _dataArray = [[NewsletterDataManager shareManager] newsletterData:_string index:_index];
+//    _lunBoArray = [[NewsletterDataManager shareManager] lunBoDataWithString:_string index:_index];
     NSLog(@"%@", _dataArray);
     [_myScrollView reloadData];
     [_tableView reloadData];

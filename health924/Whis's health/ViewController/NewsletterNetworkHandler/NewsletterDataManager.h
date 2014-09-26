@@ -12,7 +12,8 @@
 
 + (instancetype)shareManager;
 
-- (NSArray *)lunBoDataWithString:(NSString *)string;
+- (NSArray *)lunBoDataWithString:(NSString *)string index:(NSInteger)index;
 - (NSArray *)newsletterData;
+- (NSArray *)newsletterData:(NSString *)string index:(NSInteger)index;
 
 @end

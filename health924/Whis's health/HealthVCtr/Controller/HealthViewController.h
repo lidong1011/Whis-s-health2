@@ -9,5 +9,6 @@
 #import "ViewController.h"
 
 @interface HealthViewController : UIViewController
-@property(nonatomic,strong)NSString *string;
+//@property(nonatomic,strong)NSString *string;
+@property(nonatomic,assign)NSInteger index;
 @end
